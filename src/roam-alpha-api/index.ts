@@ -1,6 +1,5 @@
 import { RoamWindow, RoamWindowAction, RoamWindowInput } from './window';
 import {
-  WriteAction,
   CreateBlockAction,
   UpdateBlockAction,
   CreatePageAction,

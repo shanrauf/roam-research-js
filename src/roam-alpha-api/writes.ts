@@ -24,8 +24,6 @@ export type ActionParams = {
   };
 };
 
-export type WriteAction = (a: ActionParams) => boolean | null | undefined;
-
 export type CreateBlockActionParams = {
   location: {
     'parent-uid': string;
