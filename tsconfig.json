@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "noImplicitAny": true,
+    "lib": ["dom", "esnext"],
+    "module": "commonjs",
+    "target": "es2015",
+    "allowJs": true,
+    "declaration": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": ["src"]
+}
