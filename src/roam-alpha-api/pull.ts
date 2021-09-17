@@ -70,6 +70,4 @@ export type PullBlock = {
   'view-type'?: ViewType;
 };
 
-export type RoamPullResult = RoamPull | null;
-
 export type RoamPull = (selector: string, id: number | string) => PullBlock;

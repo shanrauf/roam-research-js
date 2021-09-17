@@ -8,10 +8,10 @@ import {
   UpdatePageAction,
   DeletePageAction,
 } from './writes';
-import { RoamPullResult, PullBlock, RoamPull } from './pull';
+import { PullBlock, RoamPull } from './pull';
 export type RoamAlphaAPI = {
   q: (query: string, ...params: any[]) => any[][];
-  pull: RoamPullResult;
+  pull: RoamPull;
   createBlock: CreateBlockAction;
   updateBlock: UpdateBlockAction;
   moveBlock: MoveBlockAction;
