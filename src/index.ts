@@ -463,7 +463,7 @@ declare global {
     updatePage: UpdatePageAction;
     deletePage: DeletePageAction;
     util: {
-      generateUID: () => Promise<string>;
+      generateUID: () => string;
     };
     data: {
       addPullWatch: (
@@ -535,10 +535,10 @@ declare global {
         }) => Promise<void>;
         removeCommand: (action: { label: string }) => Promise<void>;
       };
-      getFocusedBlock: () => Promise<null | {
+      getFocusedBlock: () => null | {
         'window-id': string;
         'block-uid': string;
-      }>;
+      };
       setBlockFocusAndSelection: (action: {
         location: { 'block-uid': string; 'window-id': string };
         selection?: { start: number; end: number };
