@@ -447,7 +447,10 @@ declare global {
     'view-type'?: ViewType;
   };
 
-  export type RoamPull = (selector: string, id: number | string) => PullBlock;
+  export type RoamPull = (
+    selector: string,
+    id: number | string
+  ) => Promise<PullBlock>;
 
   type RoamAlphaAPI = {
     q: (query: string, ...params: any[]) => any[][];
@@ -460,14 +463,14 @@ declare global {
     updatePage: UpdatePageAction;
     deletePage: DeletePageAction;
     util: {
-      generateUID: () => string;
+      generateUID: () => Promise<string>;
     };
     data: {
       addPullWatch: (
         pullPattern: string,
         entityId: string,
         callback: (before: PullBlock, after: PullBlock) => void
-      ) => boolean;
+      ) => Promise<boolean>;
       block: {
         create: CreateBlockAction;
         update: UpdateBlockAction;
@@ -484,24 +487,27 @@ declare global {
       removePullWatch: (
         pullPattern: string,
         entityId: string,
-        callback: (before: PullBlock, after: PullBlock) => void
+        callback: (before: PullBlock, after: PullBlock) => Promise<void>
       ) => boolean;
-      redo: () => void;
-      undo: () => void;
+      redo: () => Promise<void>;
+      undo: () => Promise<void>;
       user: {
-        upsert: () => void;
+        upsert: () => Promise<void>;
       };
     };
     ui: {
       mainWindow: {
         openBlock: (action: { block: { uid: string } }) => Promise<void>;
+        getOpenPageOrBlockUid: () => Promise<string>;
       };
       rightSidebar: {
-        open: () => void;
-        close: () => void;
+        open: () => Promise<void>;
+        close: () => Promise<void>;
         getWindows: () => RoamWindow[];
         addWindow: RoamWindowAction;
-        setWindowOrder: (action: { window: RoamWindowInput }) => boolean;
+        setWindowOrder: (action: {
+          window: RoamWindowInput;
+        }) => Promise<boolean>;
         collapseWindow: RoamWindowAction;
         pinWindow: RoamWindowAction;
         expandWindow: RoamWindowAction;
@@ -509,8 +515,11 @@ declare global {
         unpinWindow: RoamWindowAction;
       };
       commandPalette: {
-        addCommand: (action: { label: string; callback: () => void }) => void;
-        removeCommand: (action: { label: string }) => void;
+        addCommand: (action: {
+          label: string;
+          callback: () => void;
+        }) => Promise<void>;
+        removeCommand: (action: { label: string }) => Promise<void>;
       };
       blockContextMenu: {
         addCommand: (action: {
@@ -523,20 +532,20 @@ declare global {
             'read-only?': boolean;
             'window-id': string;
           }) => void;
-        }) => void;
-        removeCommand: (action: { label: string }) => void;
+        }) => Promise<void>;
+        removeCommand: (action: { label: string }) => Promise<void>;
       };
-      getFocusedBlock: () => null | {
+      getFocusedBlock: () => Promise<null | {
         'window-id': string;
         'block-uid': string;
-      };
+      }>;
       setBlockFocusAndSelection: (action: {
         location: { 'block-uid': string; 'window-id': string };
         selection?: { start: number; end: number };
       }) => Promise<void>;
       components: {
-        renderBlock: (args: { uid: string; el: HTMLElement }) => null;
-        unmountNode: (el: Element) => void;
+        renderBlock: (args: { uid: string; el: HTMLElement }) => Promise<null>;
+        unmountNode: (el: Element) => Promise<void>;
       };
     };
   };
