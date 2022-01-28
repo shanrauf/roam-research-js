@@ -92,9 +92,9 @@ declare global {
 
   export type RoamWindow = {
     'collapsed?': boolean;
-    'content-id': RoamBlockUid;
     order: number;
-    'page-uid': RoamBlockUid;
+    'block-uid'?: RoamBlockUid;
+    'page-uid'?: RoamBlockUid;
     'pinned?': boolean;
     type: RoamWindowType['type'];
     'window-id': RoamWindowId;
@@ -498,7 +498,9 @@ declare global {
     ui: {
       mainWindow: {
         openBlock: (action: { block: { uid: string } }) => Promise<void>;
-        getOpenPageOrBlockUid: () => Promise<string>;
+        openPage: (action: { page: { uid: string } }) => Promise<void>;
+        getOpenPageOrBlockUid: () => string;
+        focusFirstBlock: () => void;
       };
       rightSidebar: {
         open: () => Promise<void>;
