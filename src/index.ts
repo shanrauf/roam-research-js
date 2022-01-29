@@ -106,7 +106,7 @@ declare global {
 
   export type RoamWindowInput = {
     'block-uid': string;
-    type: RoamWindowType['type'];
+    type?: RoamWindowType['type'];
     order?: number;
   };
 
@@ -498,6 +498,7 @@ declare global {
     ui: {
       mainWindow: {
         openBlock: (action: { block: { uid: string } }) => Promise<void>;
+        openDailyNotes: () => Promise<void>;
         openPage: (action: { page: { uid: string } }) => Promise<void>;
         getOpenPageOrBlockUid: () => string;
         focusFirstBlock: () => void;
