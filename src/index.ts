@@ -190,6 +190,16 @@ declare global {
     uid?: RoamUserUid;
   };
 
+  export type BlockProps = {
+    /* Unix timestamp for when the POMO was clicked */
+    POMO: number;
+
+    query: {
+      'hide-paths?': boolean;
+      'not-by-page?': boolean;
+    };
+  };
+
   export type RoamBlock = {
     /**
      * :entity/attrs
@@ -248,6 +258,13 @@ declare global {
 
     order?: RoamBlockOrder;
     'view-type'?: ViewType;
+
+    /**
+     * :block/props
+     *
+     * Property that stores data about Roam components in a block e.g. {{query}}, {{POMO}}
+     */
+    props?: BlockProps;
   };
 
   /**
